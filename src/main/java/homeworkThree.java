@@ -46,10 +46,68 @@ public class homeworkThree {
                 5
         );
 
-        assertElementHasText(
+        assertElementHasTextByXpath(
                 By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
                 "Search Wikipedia",
                 "Actual text isn't expected"
+        );
+    }
+
+    @Test
+    public void CancelSearchTest(){
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_container"),
+                "Can't find element",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search…')]"),
+                "Java",
+                "Can't find element",
+                5
+        );
+
+        waitForElementIsPresent(
+                By.xpath("//android.widget.TextView[@text='Island of Indonesia, Southeast Asia']"),
+                "Actual text isn't expected",
+                5
+        );
+
+        waitForElementIsPresent(
+                By.xpath("//android.widget.TextView[@text='High-level programming language']"),
+                "Actual text isn't expected",
+                5
+        );
+
+        waitForElementAndClear(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Can't find search field",
+                5
+        );
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_close_btn"),
+                "Can't find close button",
+                5
+        );
+
+        waitForElementNotPresentById(
+                By.id("org.wikipedia:id/search_close_btn"),
+                "Can't find close button",
+                5
+        );
+
+        waitForElementNotPresentByXpath(
+                By.xpath("//android.widget.TextView[@text='Island of Indonesia, Southeast Asia']"),
+                "Element of search is on the page",
+                5
+        );
+
+        waitForElementNotPresentByXpath(
+                By.xpath("//android.widget.TextView[@text='High-level programming language']"),
+                "Element of search is on the page",
+                5
         );
     }
 
@@ -62,7 +120,7 @@ public class homeworkThree {
         );
     }
 
-    private void assertElementHasText(By xpath, String expected_text, String error_message)
+    private void assertElementHasTextByXpath(By xpath, String expected_text, String error_message)
     {
         String actual_text = driver.findElement(xpath).getText();
         Assert.assertEquals(
@@ -70,5 +128,53 @@ public class homeworkThree {
                 expected_text,
                 actual_text
         );
+    }
+
+    private WebElement waitForElementAndClick(By by, String error_message, long timeoutInSeconds)
+    {
+        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+        element.click();
+        return element;
+    }
+
+    private WebElement waitForElementAndSendKeys(By by, String value, String error_message, long timeoutInSeconds)
+    {
+        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+        element.sendKeys(value);
+        return element;
+    }
+
+    private boolean waitForElementNotPresentById(By by, String error_message, long timeoutInSeconds)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+        wait.withMessage(error_message + "\n");
+        return wait.until(
+                ExpectedConditions.invisibilityOfElementLocated(by)
+        );
+    }
+
+    private boolean waitForElementNotPresentByXpath(By xpath, String error_message, long timeoutInSeconds)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+        wait.withMessage(error_message + "\n");
+        return wait.until(
+                ExpectedConditions.invisibilityOfElementLocated(xpath)
+        );
+    }
+
+    private WebElement waitForElementIsPresent(By xpath, String error_message, long timeoutInSeconds)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+        wait.withMessage(error_message + "\n");
+        return wait.until(
+                ExpectedConditions.presenceOfElementLocated(xpath)
+        );
+    }
+
+    private WebElement waitForElementAndClear(By by, String error_message, long timeoutInSeconds)
+    {
+        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+        element.clear();
+        return element;
     }
 }

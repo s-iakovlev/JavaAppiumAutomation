@@ -63,30 +63,15 @@ public class ex6AssertTitle {
                 5
         );
 
-        String title_before_open = waitForElementAndGetAttribute(
-                By.id("org.wikipedia:id/page_list_item_title"),
-                "text",
-                "Cannot find title of article",
-                5
-        );
-
         waitForElementAndClick(
-                By.xpath("//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='Java']") ,
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='Java']"),
                 "Cannot find 'Java' topic searching by" + search_line,
                 15
         );
 
-        String title_after_open = waitForElementAndGetAttribute(
+        assertElementPresent(
                 By.id("org.wikipedia:id/view_page_title_text"),
-                "text",
-                "Cannot find title of article",
-                5
-        );
-
-        Assert.assertEquals(
-                "Article title have been changed after screen rotation",
-                title_before_open,
-                title_after_open
+                "Cannot find title of article"
         );
     }
 
@@ -113,9 +98,10 @@ public class ex6AssertTitle {
         return element;
     }
 
-    private String waitForElementAndGetAttribute(By by, String attribute, String error_message, long timeoutInSeconds)
+    private void assertElementPresent(By by, String error_mesage)
     {
-        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
-        return element.getAttribute(attribute);
+        if (driver.findElements(by).isEmpty()) {
+            Assert.assertTrue(error_mesage, false);
+        }
     }
 }

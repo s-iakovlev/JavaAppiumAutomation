@@ -5,17 +5,18 @@ import org.openqa.selenium.By;
 
 public class ex2ex3ClassesTests extends CoreTestCase {
 
-    private lib.ui.MainPageObject MainPageObject;
-    protected void SetUp() throws Exception
+    private MainPageObject MainPageObject;
+    protected void setUp() throws Exception
     {
         super.setUp();
 
-        MainPageObject = new MainPageObject(driver);
+        this.MainPageObject = new MainPageObject(driver);
     }
 
     @Test
     public void testCompareTitlePlaceholder()
     {
+        //this.MainPageObject = new MainPageObject(driver);
         MainPageObject.waitForElementPresent(
                 By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
                 "Can't find element",

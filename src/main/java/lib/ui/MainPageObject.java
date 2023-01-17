@@ -14,7 +14,7 @@ import java.time.Duration;
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
 
-public class MainPageObject {
+public class MainPageObject{
     protected AppiumDriver driver;
 
     public MainPageObject (AppiumDriver driver)
@@ -126,10 +126,10 @@ public class MainPageObject {
         return element.getAttribute(attribute);
     }
 
-    public void assertElementPresent(By by, String error_mesage)
+    public void assertElementPresent(By by, String error_message)
     {
         if (driver.findElements(by).isEmpty()) {
-            Assert.assertTrue(error_mesage, false);
+            Assert.assertTrue(error_message, false);
         }
     }
 }

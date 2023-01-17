@@ -6,16 +6,16 @@ import org.openqa.selenium.By;
 
 public class ex5SaveTwoArticlesTest extends CoreTestCase {
 
-    private lib.ui.MainPageObject MainPageObject;
-    protected void SetUp() throws Exception
+    private MainPageObject MainPageObject;
+    protected void setUp() throws Exception
     {
         super.setUp();
 
-        MainPageObject = new MainPageObject(driver);
+        this.MainPageObject = new MainPageObject(driver);
     }
 
     @Test
-    public void saveFirstArticleToMyList()
+    public void testSaveFirstArticleToMyList()
     {
         MainPageObject.waitForElementAndClick(
                 By.xpath("//*[contains(@text, 'Search Wikipedia')]"),

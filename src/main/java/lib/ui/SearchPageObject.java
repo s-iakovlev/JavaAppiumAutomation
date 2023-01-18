@@ -14,6 +14,7 @@ public class SearchPageObject extends MainPageObject{
             ISLAND_OF_INDONESIA_ARTICLE = "//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='Island of Indonesia, Southeast Asia']",
             SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
             PAGE_TITLE = "org.wikipedia:id/view_page_title_text",
+            PAGE_LIST_TITLE = "org.wikipedia:id/page_list_item_title",
             MORE_OPTIONS_BUTTON = "//android.widget.ImageView[@content-desc='More options']",
             ONBOARDING_BUTTON = "org.wikipedia:id/onboarding_button",
             INPUT_FIELD = "org.wikipedia:id/text_input",
@@ -122,7 +123,11 @@ public class SearchPageObject extends MainPageObject{
     }
 
     public void checkElementIsPresentByXpath(String text) {
-        this.waitForElementNotPresent(By.xpath("//*[@text='" + text + "']"), "Cannot find element " + text, 15);
+        this.waitForElementIsPresent(By.xpath("//*[@text='" + text + "']"), "Cannot find element " + text, 15);
+    }
+
+    public void checkElementIsNotPresentByXpath(String text) {
+        this.waitForElementNotPresentByXpath(By.xpath("//android.widget.TextView[@text='" + text + "']"), "Cannot find element " + text, 15);
     }
 
     public void clickOnElementByXpathByText(String name_of_element) {
@@ -133,6 +138,16 @@ public class SearchPageObject extends MainPageObject{
         return this.waitForElementAndGetAttribute
                 (
                         By.id(PAGE_TITLE),
+                        "text",
+                        "Cannot find title of article on article page",
+                        5
+                );
+    }
+
+    public String getAttributeOfPagelISTTitle() {
+        return this.waitForElementAndGetAttribute
+                (
+                        By.id(PAGE_LIST_TITLE),
                         "text",
                         "Cannot find title of article on article page",
                         5

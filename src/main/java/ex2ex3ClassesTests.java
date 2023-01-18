@@ -42,61 +42,6 @@ public class ex2ex3ClassesTests extends CoreTestCase {
     @Test
     public void testCancelSearch(){
 
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/search_container"),
-//                "Can't find element",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementAndSendKeys(
-//                By.xpath("//*[contains(@text, 'Search…')]"),
-//                "Java",
-//                "Can't find element",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementIsPresent(
-//                By.xpath("//android.widget.TextView[@text='Island of Indonesia, Southeast Asia']"),
-//                "Actual text isn't expected",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementIsPresent(
-//                By.xpath("//android.widget.TextView[@text='High-level programming language']"),
-//                "Actual text isn't expected",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementAndClear(
-//                By.id("org.wikipedia:id/search_src_text"),
-//                "Can't find search field",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/search_close_btn"),
-//                "Can't find close button",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementNotPresentById(
-//                By.id("org.wikipedia:id/search_close_btn"),
-//                "Can't find close button",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementNotPresentByXpath(
-//                By.xpath("//android.widget.TextView[@text='Island of Indonesia, Southeast Asia']"),
-//                "Element of search is on the page",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementNotPresentByXpath(
-//                By.xpath("//android.widget.TextView[@text='High-level programming language']"),
-//                "Element of search is on the page",
-//                5
-//        );
-
         String search_line = "Java";
         String first_avaliable_article = "Island of Indonesia, Southeast Asia";
         String second_avaliable_article = "High-level programming language";
@@ -108,17 +53,7 @@ public class ex2ex3ClassesTests extends CoreTestCase {
         SearchPageObject.waitForSearchResult(second_avaliable_article);
         SearchPageObject.clickCanselSearch();
 
-        MainPageObject.waitForElementNotPresentByXpath
-                (
-                        By.xpath("//android.widget.TextView[@text='Island of Indonesia, Southeast Asia']"),
-                "Element of search is on the page",
-                5
-                );
-        MainPageObject.waitForElementNotPresentByXpath
-                (
-                        By.xpath("//android.widget.TextView[@text='High-level programming language']"),
-                        "Element of search is on the page",
-                        5
-                );
+        SearchPageObject.checkElementIsNotPresentByXpath("Island of Indonesia, Southeast Asia");
+        SearchPageObject.checkElementIsNotPresentByXpath("High-level programming language");
     }
 }

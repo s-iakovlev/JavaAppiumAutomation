@@ -6,7 +6,7 @@ import org.openqa.selenium.*;
 
 public class ex7ScreenRotation extends CoreTestCase {
 
-    private lib.ui.MainPageObject MainPageObject;
+    private MainPageObject MainPageObject;
     protected void setUp() throws Exception
     {
         super.setUp();

@@ -1,5 +1,6 @@
 import lib.CoreTestCase;
 import lib.ui.MainPageObject;
+import lib.ui.NavigationUI;
 import lib.ui.SearchPageObject;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -47,11 +48,13 @@ public class ex2ex3ClassesTests extends CoreTestCase {
         String second_avaliable_article = "High-level programming language";
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        NavigationUI NavigationUI = new NavigationUI(driver);
+
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.waitForSearchResult(first_avaliable_article);
         SearchPageObject.waitForSearchResult(second_avaliable_article);
-        SearchPageObject.clickCanselSearch();
+        NavigationUI.clickCanselSearch();
 
         SearchPageObject.checkElementIsNotPresentByXpath("Island of Indonesia, Southeast Asia");
         SearchPageObject.checkElementIsNotPresentByXpath("High-level programming language");

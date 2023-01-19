@@ -1,4 +1,5 @@
 import lib.CoreTestCase;
+import lib.ui.ArticlePageObject;
 import lib.ui.MainPageObject;
 import lib.ui.SearchPageObject;
 import org.junit.Test;
@@ -17,13 +18,14 @@ public class ex6AssertTitle extends CoreTestCase {
     public void testCheckArticleTitle()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
 
         String search_line = "Java";
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.checkAndClickOnArticleDescription("Object-oriented programming language");
-        SearchPageObject.checkPageTitle();
+        ArticlePageObject.checkPageTitle();
 
     }
 }

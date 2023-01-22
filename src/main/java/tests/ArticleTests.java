@@ -35,6 +35,5 @@ public class ArticleTests extends CoreTestCase {
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.checkAndClickOnArticleDescription("Object-oriented programming language");
         ArticlePageObject.checkPageTitle();
-
     }
 }

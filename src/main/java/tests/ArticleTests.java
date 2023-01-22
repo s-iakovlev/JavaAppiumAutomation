@@ -1,19 +1,28 @@
+package tests;
+
 import lib.CoreTestCase;
 import lib.ui.ArticlePageObject;
-import lib.ui.MainPageObject;
 import lib.ui.SearchPageObject;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
-public class ex6AssertTitle extends CoreTestCase {
+public class ArticleTests extends CoreTestCase {
 
-    private MainPageObject MainPageObject;
-    protected void setUp() throws Exception
+    //домашняя работа 2
+    @Test
+    public void testCompareTitlePlaceholder()
     {
-        super.setUp();
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
-        this.MainPageObject = new MainPageObject(driver);
+        SearchPageObject.initSearchInput();
+        SearchPageObject.assertElementHasTextByXpath
+                (By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                        "Search Wikipedia",
+                        "Actual text isn't expected"
+                );
     }
 
+    //домашняя работа 6
     @Test
     public void testCheckArticleTitle()
     {

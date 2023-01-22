@@ -4,6 +4,8 @@ import io.appium.java_client.AppiumDriver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
+import static org.junit.Assert.assertEquals;
+
 public class SearchPageObject extends MainPageObject{
 
     private static final String
@@ -46,7 +48,7 @@ public class SearchPageObject extends MainPageObject{
     public void assertElementHasTextByXpath(By xpath, String expected_text, String error_message)
     {
         String actual_text = driver.findElement(xpath).getText();
-        Assert.assertEquals(
+        assertEquals(
                 error_message,
                 expected_text,
                 actual_text

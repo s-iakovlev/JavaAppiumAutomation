@@ -15,6 +15,7 @@ import java.util.List;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
+import static org.junit.Assert.assertEquals;
 
 public class MainPageObject{
     protected AppiumDriver driver;
@@ -36,7 +37,7 @@ public class MainPageObject{
     public void assertElementHasTextByXpath(By xpath, String expected_text, String error_message)
     {
         String actual_text = driver.findElement(xpath).getText();
-        Assert.assertEquals(
+        assertEquals(
                 error_message,
                 expected_text,
                 actual_text

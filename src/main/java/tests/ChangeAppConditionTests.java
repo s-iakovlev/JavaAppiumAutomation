@@ -1,12 +1,15 @@
+package tests;
+
 import lib.CoreTestCase;
 import lib.ui.MainPageObject;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Rotatable;
+import org.openqa.selenium.ScreenOrientation;
 
-public class ex7ScreenRotation extends CoreTestCase {
-
-    private MainPageObject MainPageObject;
+public class ChangeAppConditionTests extends CoreTestCase {
+    private lib.ui.MainPageObject MainPageObject;
     protected void setUp() throws Exception
     {
         super.setUp();
@@ -14,6 +17,7 @@ public class ex7ScreenRotation extends CoreTestCase {
         this.MainPageObject = new MainPageObject(driver);
     }
 
+    //по дз рефакторить не надо было, не стал переделывать дальше, вынес просто сюда
     @Test
     public void testChangeScreenOrientationOnSearchResults()
     {

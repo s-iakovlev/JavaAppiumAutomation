@@ -1,18 +1,36 @@
+package tests;
+
 import lib.CoreTestCase;
-import lib.ui.*;
-import org.junit.Assert;
+import lib.ui.ArticlePageObject;
+import lib.ui.MyListsPageObject;
+import lib.ui.NavigationUI;
+import lib.ui.SearchPageObject;
 import org.junit.Test;
 
-public class ex5SaveTwoArticlesTest extends CoreTestCase {
+public class SearchTests extends CoreTestCase {
 
-    private MainPageObject MainPageObject;
-    protected void setUp() throws Exception
-    {
-        super.setUp();
+    //домашнее задание 3
+    @Test
+    public void testCancelSearch(){
 
-        this.MainPageObject = new MainPageObject(driver);
+        String search_line = "Java";
+        String first_avaliable_article = "Island of Indonesia, Southeast Asia";
+        String second_avaliable_article = "High-level programming language";
+
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        NavigationUI NavigationUI = new NavigationUI(driver);
+
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.waitForSearchResult(first_avaliable_article);
+        SearchPageObject.waitForSearchResult(second_avaliable_article);
+        NavigationUI.clickCanselSearch();
+
+        SearchPageObject.checkElementIsNotPresentByXpath("Island of Indonesia, Southeast Asia");
+        SearchPageObject.checkElementIsNotPresentByXpath("High-level programming language");
     }
 
+    //домашнее задание 5
     @Test
     public void testSaveFirstArticleToMyList()
     {
@@ -61,7 +79,7 @@ public class ex5SaveTwoArticlesTest extends CoreTestCase {
         SearchPageObject.clickOnElementByXpathByText("Java");
         String title_after_click_on_article = ArticlePageObject.getAttributeOfPageTitle();
 
-        Assert.assertEquals(
+        assertEquals(
                 "Article title have been changed after open article",
                 title_on_my_lists_screen,
                 title_after_click_on_article

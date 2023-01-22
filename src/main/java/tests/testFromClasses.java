@@ -1,3 +1,5 @@
+package tests;
+
 import lib.CoreTestCase;
 import lib.ui.MainPageObject;
 import lib.ui.SearchPageObject;
@@ -21,6 +23,7 @@ public class testFromClasses extends CoreTestCase {
         this.MainPageObject = new MainPageObject(driver);
     }
 
+    //рабочий файл - не домашки
     @Test
     public void testSearch()
     {
@@ -414,6 +417,4 @@ public class testFromClasses extends CoreTestCase {
                 5
         );
     }
-
-
 }

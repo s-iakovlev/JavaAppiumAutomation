@@ -266,7 +266,6 @@ public class testFromClasses extends CoreTestCase {
                 "Cannot delete saved article",
                 5
         );
-
     }
 
     @Test

@@ -48,7 +48,6 @@ public class ChangeAppConditionTests extends CoreTestCase {
                 "Cannot find title of article",
                 5
         );
-
         //В капабилити еще изначально задаем PORTRAIT, а тут уже меняем на LANDSCAPE
         ((Rotatable)driver).rotate(ScreenOrientation.LANDSCAPE);
 

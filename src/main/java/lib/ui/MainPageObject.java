@@ -3,6 +3,7 @@ package lib.ui;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -117,9 +118,9 @@ public class MainPageObject{
 
         TouchAction action = new TouchAction((PerformsTouchActions) driver);
         action
-                .press(point(rigt_x, middle_y))
+                .press(PointOption.point(rigt_x, middle_y))
                 .waitAction(waitOptions(Duration.ofSeconds(20)))
-                .moveTo(point(left_x, middle_y))
+                .moveTo(PointOption.point(left_x, middle_y))
                 .release().perform();
     }
 
@@ -179,9 +180,9 @@ public class MainPageObject{
         int end_y = (int)(size.height * 0.2);
 
         action
-                .press(point(x,start_y))
+                .press(PointOption.point(x,start_y))
                 .waitAction(waitOptions(Duration.ofSeconds(5)))
-                .moveTo(point(x,end_y))
+                .moveTo(PointOption.point(x,end_y))
                 .release()
                 .perform();
     }
